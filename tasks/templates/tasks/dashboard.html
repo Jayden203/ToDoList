@@ -1,0 +1,127 @@
+{% extends 'base.html' %}
+
+{% block title %}Dashboard{% endblock %}
+
+{% block content %}
+<div class="d-flex justify-content-between align-items-center mb-4 flex-wrap gap-2">
+    <div>
+        <h1 class="mb-1">Dashboard</h1>
+        <p class="text-muted mb-0">Manage your tasks and keep track of progress.</p>
+    </div>
+    <div>
+        <a href="{% url 'create_task' %}" class="btn btn-primary">Create New Task</a>
+    </div>
+</div>
+
+<div class="page-card mb-4">
+    <h2 class="section-title">Search and Filter</h2>
+
+    <form method="get" class="row g-3">
+        <div class="col-md-3">
+            <label for="q" class="form-label">Search by title</label>
+            <input type="text" name="q" id="q" value="{{ search_query }}" class="form-control">
+        </div>
+
+        <div class="col-md-3">
+            <label for="category" class="form-label">Category</label>
+            <select name="category" id="category" class="form-select">
+                <option value="">All Categories</option>
+                {% for category in categories %}
+                    <option value="{{ category.id }}" {% if selected_category == category.id|stringformat:"s" %}selected{% endif %}>
+                        {{ category.name }}
+                    </option>
+                {% endfor %}
+            </select>
+        </div>
+
+        <div class="col-md-2">
+            <label for="status" class="form-label">Status</label>
+            <select name="status" id="status" class="form-select">
+                <option value="">All</option>
+                <option value="pending" {% if selected_status == 'pending' %}selected{% endif %}>Pending</option>
+                <option value="completed" {% if selected_status == 'completed' %}selected{% endif %}>Completed</option>
+            </select>
+        </div>
+
+        <div class="col-md-2">
+            <label for="sort" class="form-label">Sort by</label>
+            <select name="sort" id="sort" class="form-select">
+                <option value="">Default</option>
+                <option value="due_date" {% if selected_sort == 'due_date' %}selected{% endif %}>Due Date</option>
+                <option value="created_at" {% if selected_sort == 'created_at' %}selected{% endif %}>Newest Created</option>
+                <option value="title" {% if selected_sort == 'title' %}selected{% endif %}>Title A-Z</option>
+            </select>
+        </div>
+
+        <div class="col-md-2 d-flex align-items-end gap-2">
+            <button type="submit" class="btn btn-primary">Apply</button>
+            <a href="{% url 'dashboard' %}" class="btn btn-outline-secondary">Clear</a>
+        </div>
+    </form>
+</div>
+
+<div>
+    <h2 class="section-title">Your Tasks</h2>
+
+    {% if tasks %}
+        {% for task in tasks %}
+            <div class="task-card">
+                <div class="d-flex justify-content-between align-items-start flex-wrap gap-2">
+                    <div>
+                        <h5 class="mb-2">{{ task.title }}</h5>
+
+                        {% if task.description %}
+                            <p class="mb-2">{{ task.description }}</p>
+                        {% endif %}
+
+                        <div class="task-meta">
+                            <div>
+                                <strong>Category:</strong>
+                                {% if task.category %}
+                                    {{ task.category.name }}
+                                {% else %}
+                                    No category
+                                {% endif %}
+                            </div>
+
+                            <div>
+                                <strong>Due Date:</strong>
+                                {% if task.due_date %}
+                                    {{ task.due_date }}
+                                {% else %}
+                                    Not set
+                                {% endif %}
+                            </div>
+
+                            <div>
+                                <strong>Status:</strong>
+                                {% if task.completed %}
+                                    ✅ Completed
+                                {% else %}
+                                    ⏳ Pending
+                                {% endif %}
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="action-links">
+                        <a href="{% url 'edit_task' task.id %}">Edit</a>
+                        <a href="{% url 'delete_task' task.id %}">Delete</a>
+                        <a href="{% url 'toggle_task_status' task.id %}">
+                            {% if task.completed %}
+                                Mark Pending
+                            {% else %}
+                                Mark Completed
+                            {% endif %}
+                        </a>
+                    </div>
+                </div>
+            </div>
+        {% endfor %}
+    {% else %}
+        <div class="empty-box">
+            No tasks found.
+        </div>
+    {% endif %}
+</div>
+{% endblock %}

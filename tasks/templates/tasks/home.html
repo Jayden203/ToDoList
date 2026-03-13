@@ -1,0 +1,40 @@
+{% extends 'base.html' %}
+
+{% block title %}Home{% endblock %}
+
+{% block content %}
+<div class="hero-box">
+    <h1 class="display-5 fw-bold">ToDoList</h1>
+    <p class="lead mt-3">
+        Organise your daily tasks, track deadlines, manage categories, and monitor your progress in one place.
+    </p>
+
+    {% if user.is_authenticated %}
+        <a href="{% url 'dashboard' %}" class="btn btn-light btn-lg mt-3">Go to Dashboard</a>
+    {% else %}
+        <a href="{% url 'register' %}" class="btn btn-light btn-lg mt-3 me-2">Get Started</a>
+        <a href="{% url 'login' %}" class="btn btn-outline-light btn-lg mt-3">Login</a>
+    {% endif %}
+</div>
+
+<div class="row mt-4 g-4">
+    <div class="col-md-4">
+        <div class="page-card h-100">
+            <h3 class="section-title">Manage Tasks</h3>
+            <p>Create, edit, delete, and update task status easily.</p>
+        </div>
+    </div>
+    <div class="col-md-4">
+        <div class="page-card h-100">
+            <h3 class="section-title">Use Categories</h3>
+            <p>Group tasks into categories so they are easier to find and organise.</p>
+        </div>
+    </div>
+    <div class="col-md-4">
+        <div class="page-card h-100">
+            <h3 class="section-title">Track Progress</h3>
+            <p>View your analytics to monitor completion rate and workload distribution.</p>
+        </div>
+    </div>
+</div>
+{% endblock %}
