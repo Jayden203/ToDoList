@@ -5,21 +5,21 @@
 {% block content %}
 <div class="d-flex justify-content-between align-items-center mb-4 flex-wrap gap-2">
     <div>
-        <h1 class="mb-1">Dashboard</h1>
+        <h1 style="color: #0d6efd; font-weight: 600; margin-bottom: 0.25rem;">Dashboard</h1>
         <p class="text-muted mb-0">Manage your tasks and keep track of progress.</p>
     </div>
     <div>
-        <a href="{% url 'create_task' %}" class="btn btn-primary">Create New Task</a>
+        <a href="{% url 'create_task' %}" class="btn btn-primary">+ Create New Task</a>
     </div>
 </div>
 
 <div class="page-card mb-4">
-    <h2 class="section-title">Search and Filter</h2>
+    <h2 class="section-title">Search & Filter</h2>
 
     <form method="get" class="row g-3">
         <div class="col-md-3">
-            <label for="q" class="form-label">Search by title</label>
-            <input type="text" name="q" id="q" value="{{ search_query }}" class="form-control">
+            <label for="q" class="form-label">Search</label>
+            <input type="text" name="q" id="q" value="{{ search_query }}" class="form-control" placeholder="Task title...">
         </div>
 
         <div class="col-md-3">
@@ -44,17 +44,17 @@
         </div>
 
         <div class="col-md-2">
-            <label for="sort" class="form-label">Sort by</label>
+            <label for="sort" class="form-label">Sort By</label>
             <select name="sort" id="sort" class="form-select">
                 <option value="">Default</option>
                 <option value="due_date" {% if selected_sort == 'due_date' %}selected{% endif %}>Due Date</option>
-                <option value="created_at" {% if selected_sort == 'created_at' %}selected{% endif %}>Newest Created</option>
+                <option value="created_at" {% if selected_sort == 'created_at' %}selected{% endif %}>Newest</option>
                 <option value="title" {% if selected_sort == 'title' %}selected{% endif %}>Title A-Z</option>
             </select>
         </div>
 
         <div class="col-md-2 d-flex align-items-end gap-2">
-            <button type="submit" class="btn btn-primary">Apply</button>
+            <button type="submit" class="btn btn-primary flex-grow-1">Apply</button>
             <a href="{% url 'dashboard' %}" class="btn btn-outline-secondary">Clear</a>
         </div>
     </form>
@@ -66,62 +66,59 @@
     {% if tasks %}
         {% for task in tasks %}
             <div class="task-card">
-                <div class="d-flex justify-content-between align-items-start flex-wrap gap-2">
-                    <div>
-                        <h5 class="mb-2">{{ task.title }}</h5>
+                <div class="d-flex justify-content-between align-items-start flex-wrap gap-3">
+                    <div class="flex-grow-1">
+                        <div class="d-flex align-items-center gap-2 mb-2">
+                            <h5 class="mb-0">{{ task.title }}</h5>
+                            {% if task.completed %}
+                                <span class="badge" style="background: #198754;">Completed</span>
+                            {% else %}
+                                <span class="badge" style="background: #ffc107; color: #1e293b;">Pending</span>
+                            {% endif %}
+                        </div>
 
                         {% if task.description %}
-                            <p class="mb-2">{{ task.description }}</p>
+                            <p class="text-muted mb-3" style="font-size: 0.95rem;">{{ task.description }}</p>
                         {% endif %}
 
                         <div class="task-meta">
-                            <div>
+                            <span>
                                 <strong>Category:</strong>
                                 {% if task.category %}
                                     {{ task.category.name }}
                                 {% else %}
-                                    No category
+                                    <span style="color: #94a3b8;">Uncategorized</span>
                                 {% endif %}
-                            </div>
-
-                            <div>
-                                <strong>Due Date:</strong>
+                            </span>
+                            <span>
+                                <strong>Due:</strong>
                                 {% if task.due_date %}
-                                    {{ task.due_date }}
+                                    {{ task.due_date|date:"M d, Y" }}
                                 {% else %}
-                                    Not set
+                                    <span style="color: #94a3b8;">Not set</span>
                                 {% endif %}
-                            </div>
-
-                            <div>
-                                <strong>Status:</strong>
-                                {% if task.completed %}
-                                    ✅ Completed
-                                {% else %}
-                                    ⏳ Pending
-                                {% endif %}
-                            </div>
+                            </span>
                         </div>
                     </div>
 
-                    <div class="action-links">
-                        <a href="{% url 'edit_task' task.id %}">Edit</a>
-                        <a href="{% url 'delete_task' task.id %}">Delete</a>
-                        <a href="{% url 'toggle_task_status' task.id %}">
-                            {% if task.completed %}
-                                Mark Pending
-                            {% else %}
-                                Mark Completed
-                            {% endif %}
+                    <div class="action-links d-flex gap-2">
+                        <a href="{% url 'edit_task' task.id %}" class="btn btn-sm btn-outline-primary">Edit</a>
+                        <a href="{% url 'toggle_task_status' task.id %}" class="btn btn-sm btn-outline-warning">
+                            {% if task.completed %}Mark Pending{% else %}Complete{% endif %}
                         </a>
+                        <a href="{% url 'delete_task' task.id %}" class="btn btn-sm btn-outline-danger">Delete</a>
                     </div>
                 </div>
             </div>
         {% endfor %}
     {% else %}
         <div class="empty-box">
-            No tasks found.
+            <div style="font-size: 3rem; margin-bottom: 1rem;">📋</div>
+            <h3 style="color: #1e293b; margin-bottom: 0.5rem;">No tasks yet</h3>
+            <p style="color: #64748b; margin-bottom: 1.5rem;">Create your first task to get started!</p>
+            <a href="{% url 'create_task' %}" class="btn btn-primary">+ Create Task</a>
         </div>
     {% endif %}
 </div>
+<link rel="stylesheet" href="/static/css/style.css">
 {% endblock %}

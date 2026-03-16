@@ -17,23 +17,57 @@
     {% endif %}
 </div>
 
+
+
+<div class="page-card weather-section">
+    <h2 class="section-title">Live Weather</h2>
+
+    <div class="row g-3">
+        <div class="col-md-6">
+            <div class="weather-card">
+                <h4>{{ london_weather.icon }} London</h4>
+                {% if london_weather %}
+                    <p><strong>{{ london_weather.temperature }}°C</strong></p>
+                    <p>{{ london_weather.description }}</p>
+                    <p>Wind: {{ london_weather.wind_speed }} km/h</p>
+                {% else %}
+                    <p>Weather data unavailable.</p>
+                {% endif %}
+            </div>
+        </div>
+
+        <div class="col-md-6">
+            <div class="weather-card">
+                <h4>{{ glasgow_weather.icon }} Glasgow</h4>
+                {% if glasgow_weather %}
+                    <p><strong>{{ glasgow_weather.temperature }}°C</strong></p>
+                    <p>{{ glasgow_weather.description }}</p>
+                    <p>Wind: {{ glasgow_weather.wind_speed }} km/h</p>
+                {% else %}
+                    <p>Weather data unavailable.</p>
+                {% endif %}
+            </div>
+        </div>
+    </div>
+</div>
+
 <div class="row mt-4 g-4">
     <div class="col-md-4">
         <div class="page-card h-100">
             <h3 class="section-title">Manage Tasks</h3>
-            <p>Create, edit, delete, and update task status easily.</p>
+            <p style="color: #475569; line-height: 1.6;">Create, edit, delete, and update task status easily.</p>
         </div>
     </div>
     <div class="col-md-4">
         <div class="page-card h-100">
             <h3 class="section-title">Use Categories</h3>
-            <p>Group tasks into categories so they are easier to find and organise.</p>
+            <p style="color: #475569; line-height: 1.6;">Group tasks into categories so they are easier to find and organise.</p>
         </div>
     </div>
     <div class="col-md-4">
         <div class="page-card h-100">
             <h3 class="section-title">Track Progress</h3>
-            <p>View your analytics to monitor completion rate and workload distribution.</p>
+            <p style="color: #475569; line-height: 1.6;">View your analytics to monitor completion rate and workload distribution.</p>
         </div>
     </div>
 </div>
