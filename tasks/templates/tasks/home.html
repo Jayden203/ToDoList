@@ -25,7 +25,7 @@
     <div class="row g-3">
         <div class="col-md-6">
             <div class="weather-card">
-                <h4>{{ london_weather.icon }} London</h4>
+                <h3>{{ london_weather.icon }} London</h3>
                 {% if london_weather %}
                     <p><strong>{{ london_weather.temperature }}°C</strong></p>
                     <p>{{ london_weather.description }}</p>
@@ -38,7 +38,7 @@
 
         <div class="col-md-6">
             <div class="weather-card">
-                <h4>{{ glasgow_weather.icon }} Glasgow</h4>
+                <h3>{{ glasgow_weather.icon }} Glasgow</h3>
                 {% if glasgow_weather %}
                     <p><strong>{{ glasgow_weather.temperature }}°C</strong></p>
                     <p>{{ glasgow_weather.description }}</p>

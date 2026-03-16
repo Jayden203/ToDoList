@@ -409,8 +409,8 @@ a:hover {
 }
 
 .weather-card {
-    background: #f8fbff;
-    border: 1px solid #dbe7f3;
+    background: #ffffff;
+    border: 1px solid #cbd5e1;
     border-radius: 10px;
     padding: 10px 14px;
     box-shadow: 0 2px 8px rgba(0, 0, 0, 0.03);
@@ -418,17 +418,21 @@ a:hover {
 }
 
 .weather-card h4 {
-    color: #1f6feb;
+    color: #1e3a8a;
     margin: 0 0 6px 0;
     font-weight: 700;
     font-size: 1rem;
 }
 
 .weather-card p {
-    color: #475569;
+    color: #334155;
     margin: 0 0 4px 0;
-    line-height: 1.25;
-    font-size: 0.92rem;
+    line-height: 1.35;
+    font-size: 0.95rem;
+}
+
+.weather-card p:last-child {
+    margin-bottom: 0;
 }
 
 .weather-card p:last-child {
@@ -474,4 +478,56 @@ a:hover {
     border-radius: 14px;
     padding: 18px;
     color: #64748b;
+}
+
+a:focus,
+button:focus,
+input:focus,
+select:focus,
+textarea:focus {
+    outline: 3px solid #2563eb;
+    outline-offset: 2px;
+}
+
+button:focus-visible,
+a:focus-visible,
+input:focus-visible,
+select:focus-visible,
+textarea:focus-visible {
+    outline: 3px solid #2563eb;
+    outline-offset: 2px;
+}
+
+.skip-link {
+    position: absolute;
+    top: -40px;
+    left: 10px;
+    background: #0d6efd;
+    color: #ffffff;
+    padding: 8px 12px;
+    border-radius: 8px;
+    z-index: 1000;
+    text-decoration: none;
+}
+
+.skip-link:focus {
+    top: 10px;
+}
+
+a:focus,
+button:focus,
+input:focus,
+select:focus,
+textarea:focus {
+    outline: 3px solid #2563eb;
+    outline-offset: 2px;
+}
+
+button:focus-visible,
+a:focus-visible,
+input:focus-visible,
+select:focus-visible,
+textarea:focus-visible {
+    outline: 3px solid #2563eb;
+    outline-offset: 2px;
 }

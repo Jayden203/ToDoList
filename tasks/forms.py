@@ -15,7 +15,7 @@ class RegisterForm(UserCreationForm):
 class TaskForm(forms.ModelForm):
     due_date = forms.DateField(
         required=False,
-        widget=forms.DateInput(attrs={'type': 'date'})
+        widget=forms.DateInput(attrs={'type': 'date','lang': 'en'})
     )
 
     class Meta:
