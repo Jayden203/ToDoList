@@ -5,6 +5,8 @@ from django.contrib import messages
 from django.db.models import Count
 from .forms import RegisterForm, TaskForm, CategoryForm
 from .models import Task, Category
+from django.http import JsonResponse
+from django.views.decorators.http import require_POST
 from django.utils import timezone
 from datetime import timedelta
 import requests
@@ -292,3 +294,17 @@ def analytics(request):
     }
 
     return render(request, "tasks/analytics.html", context)
+
+@login_required
+@require_POST
+def toggle_task_status_ajax(request, task_id):
+    task = get_object_or_404(Task, id=task_id, user=request.user)
+    task.completed = not task.completed
+    task.save()
+
+    return JsonResponse({
+        "success": True,
+        "task_id": task.id,
+        "completed": task.completed,
+        "title": task.title,
+    })

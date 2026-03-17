@@ -12,4 +12,5 @@ urlpatterns = [
     path('categories/', views.categories_view, name='categories'),
     path('categories/<int:category_id>/delete/', views.delete_category, name='delete_category'),
     path('analytics/', views.analytics, name='analytics'),
+    path("tasks/<int:task_id>/toggle-ajax/", views.toggle_task_status_ajax, name="toggle_task_status_ajax"),
 ]

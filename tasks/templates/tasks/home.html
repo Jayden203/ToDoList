@@ -17,35 +17,32 @@
     {% endif %}
 </div>
 
-
+<div class="page-card mt-4" id="quote-section">
+    <h2 class="section-title">Daily Motivation</h2>
+    <p id="quote-text">Loading quote...</p>
+    <p id="quote-author" class="text-muted mb-0"></p>
+</div>
 
 <div class="page-card weather-section">
     <h2 class="section-title">Live Weather</h2>
+    <p class="form-help">Real-time weather information for London and Glasgow.</p>
 
     <div class="row g-3">
         <div class="col-md-6">
             <div class="weather-card">
-                <h3>{{ london_weather.icon }} London</h3>
-                {% if london_weather %}
-                    <p><strong>{{ london_weather.temperature }}°C</strong></p>
-                    <p>{{ london_weather.description }}</p>
-                    <p>Wind: {{ london_weather.wind_speed }} km/h</p>
-                {% else %}
-                    <p>Weather data unavailable.</p>
-                {% endif %}
+                <h3 id="london-title">London</h3>
+                <p id="london-temp">Loading...</p>
+                <p id="london-desc"></p>
+                <p id="london-wind"></p>
             </div>
         </div>
 
         <div class="col-md-6">
             <div class="weather-card">
-                <h3>{{ glasgow_weather.icon }} Glasgow</h3>
-                {% if glasgow_weather %}
-                    <p><strong>{{ glasgow_weather.temperature }}°C</strong></p>
-                    <p>{{ glasgow_weather.description }}</p>
-                    <p>Wind: {{ glasgow_weather.wind_speed }} km/h</p>
-                {% else %}
-                    <p>Weather data unavailable.</p>
-                {% endif %}
+                <h3 id="glasgow-title">Glasgow</h3>
+                <p id="glasgow-temp">Loading...</p>
+                <p id="glasgow-desc"></p>
+                <p id="glasgow-wind"></p>
             </div>
         </div>
     </div>

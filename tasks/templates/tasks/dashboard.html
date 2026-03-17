@@ -63,17 +63,19 @@
 <div>
     <h2 class="section-title">Your Tasks</h2>
 
+    <input type="hidden" id="csrf-token" value="{{ csrf_token }}">
     {% if tasks %}
         {% for task in tasks %}
-            <div class="task-card">
+            <div class="task-card" id="task-{{ task.id }}">
                 <div class="d-flex justify-content-between align-items-start flex-wrap gap-3">
                     <div class="flex-grow-1">
                         <div class="d-flex align-items-center gap-2 mb-2">
-                            <h5 class="mb-0">{{ task.title }}</h5>
+                            <h5 class="mb-0 {% if task.completed %}task-completed{% endif %}" id="task-title-{{ task.id }}">{{ task.title }}
+                            </h5>
                             {% if task.completed %}
-                                <span class="badge" style="background: #198754;">Completed</span>
+                                <span class="badge" id="task-badge-{{ task.id }}" style="background: #198754;">Completed</span>
                             {% else %}
-                                <span class="badge" style="background: #ffc107; color: #1e293b;">Pending</span>
+                                <span class="badge" id="task-badge-{{ task.id }}" style="background: #ffc107; color: #1e293b;">Pending</span>
                             {% endif %}
                         </div>
 
@@ -103,9 +105,14 @@
 
                     <div class="action-links d-flex gap-2">
                         <a href="{% url 'edit_task' task.id %}" class="btn btn-sm btn-outline-primary">Edit</a>
-                        <a href="{% url 'toggle_task_status' task.id %}" class="btn btn-sm btn-outline-warning">
+                        <button
+                            type="button"
+                            class="btn btn-sm btn-outline-warning toggle-task-btn"
+                            data-task-id="{{ task.id }}"
+                            id="toggle-btn-{{ task.id }}"
+                        >
                             {% if task.completed %}Mark Pending{% else %}Complete{% endif %}
-                        </a>
+                        </button>
                         <a href="{% url 'delete_task' task.id %}" class="btn btn-sm btn-outline-danger">Delete</a>
                     </div>
                 </div>
@@ -120,5 +127,4 @@
         </div>
     {% endif %}
 </div>
-<link rel="stylesheet" href="/static/css/style.css">
 {% endblock %}

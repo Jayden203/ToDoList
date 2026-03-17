@@ -41,7 +41,14 @@
 
                 <div class="d-flex align-items-center gap-2">
                     {% if user.is_authenticated %}
-                        <span class="text-white small">Hi, {{ user.username }}</span>
+                        <div id="nav-weather" class="nav-weather">
+                            <span id="nav-weather-icon">🌤️</span>
+                            <span id="nav-weather-city">Glasgow</span>
+                            <span id="nav-weather-temp">--°C</span>
+                            <span id="nav-weather-desc">Loading...</span>
+                        </div>
+                        <span class="small" style="color:#1e293b">Hi, {{ user.username }}</span>
+                        
                         <form method="post" action="{% url 'logout' %}" class="m-0">
                             {% csrf_token %}
                             <button type="submit" class="btn btn-light btn-sm">Logout</button>
