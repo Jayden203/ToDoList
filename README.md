@@ -374,8 +374,4 @@ GitHub: https://github.com/Jayden203
 
 
 ## License
-<<<<<<< HEAD
 This repository is provided for educational and coursework purposes.
-=======
-This repository is provided for educational and coursework purposes.
->>>>>>> 2664262 (Rewrite README with full project details)
