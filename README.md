@@ -126,6 +126,9 @@ requirements.txt
 README.md
 ```
 
+---
+
+
 ## Main Functional Areas
 ### Authentication
 Users can register, log in, and log out securely using Django’s authentication system.
@@ -162,6 +165,9 @@ The analytics page provides a structured overview of:
 ### Accessibility
 The project includes several improvements to support usability and accessibility, including keyboard navigation support, semantic structure, clearer labels, and better visual contrast.
 
+---
+
+
 ## User Interface Highlights
 The interface is designed to remain simple and practical while still including modern dynamic features.
 ### Homepage
@@ -185,6 +191,9 @@ The interface is designed to remain simple and practical while still including m
 - Structured progress display
 - Performance-oriented layout
 - Easy-to-read statistics
+
+---
+
 
 ## Installation and Local Setup
 ### Clone the repository
@@ -225,6 +234,9 @@ python manage.py runserver
 Then open the site in your browser:
 http://127.0.0.1:8000/
 
+---
+
+
 ## Requirements
 A typical requirements.txt for this project includes:
 ```
@@ -236,6 +248,8 @@ requests==2.32.5
 whitenoise==6.12.0
 ```
 
+---
+
 ## Running Tests
 This project includes tests for core functionality such as:
 - model behaviour
@@ -246,6 +260,9 @@ This project includes tests for core functionality such as:
 ```
 python manage.py test
 ```
+
+---
+
 
 ## Deployment
 The project is intended to be deployable on PythonAnywhere.
@@ -269,11 +286,17 @@ python manage.py migrate
 python manage.py collectstatic --noinput
 ```
 
+---
+
+
 ## Important deployment settings
 - ALLOWED_HOSTS must include the deployed domain
 - static files must be configured correctly
 - whitenoise should be installed if used in middleware
 - the WSGI file must point to config.settings
+
+---
+
 
 ## Accessibility Summary
 Several accessibility-focused improvements were included in the project:
@@ -283,6 +306,9 @@ Several accessibility-focused improvements were included in the project:
 - corrected heading hierarchy
 - better form guidance and labels
 These changes were made to improve usability and align the interface with more accessible design practice.
+
+---
+
 
 ## Sustainability / Lighthouse Summary
 The project was refined using Lighthouse-style evaluation and iterative improvement.
@@ -300,6 +326,9 @@ The optimised version achieved very strong scores across:
 - SEO
 This demonstrates that small but targeted frontend improvements can significantly strengthen overall quality.
 
+---
+
+
 ## Example Dynamic Features
 ### AJAX Task Toggle
 Users can update task completion status directly on the dashboard without refreshing the entire page.
@@ -309,6 +338,9 @@ Weather information is fetched asynchronously from an external API and displayed
 A compact Glasgow weather status component is displayed in the top navigation bar and updated on page load.
 ### Motivation Quote Fetch
 The homepage loads a quote asynchronously using JavaScript. Fallback logic can be used if the quote API is unavailable.
+
+---
+
 
 ## Future Improvements
 Possible future extensions for the project include:
@@ -320,6 +352,9 @@ Possible future extensions for the project include:
 - theme switching / dark mode
 - additional API-based productivity features
 
+---
+
+
 ## Notes
 This project was built as a coursework-style Django application and aims to demonstrate:
 - practical backend development with Django
@@ -328,9 +363,15 @@ This project was built as a coursework-style Django application and aims to demo
 - accessible interface improvements
 - sustainable and performance-conscious design choices
 
+---
+
+
 ## Author
 Yibo Cao
 GitHub: https://github.com/Jayden203
+
+---
+
 
 ## License
 This repository is provided for educational and coursework purposes.
